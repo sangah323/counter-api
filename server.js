@@ -1,26 +1,6 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3005;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-require('dotenv').config();
-const cors = require('cors');
-app.use(cors());
-
-app.get('/', async (req, res) => {
-  res.send('hello! aws');
-});
-
-app.listen(PORT, () => {
-  console.log("back server open");
-});
-
-/*
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3005;
 const { Counter, sequelize } = require('./model');
 
 app.use(express.urlencoded({ extended: true }));
@@ -63,4 +43,3 @@ app.listen(PORT, async () => {
 
   console.log(`server start ${PORT}`);
 });
-*/
