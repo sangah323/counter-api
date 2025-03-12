@@ -16,10 +16,10 @@ app.get("/", async (req, res) => {
 
 app.get("/counter", async (req, res) => {
   try {
-    const result = await Counter.findOne({
+    const result = await Counter.findAll({
       order: [["id", "DESC"]],
     });
-    res.json({ value: result });
+    res.json(result);
   } catch (error) {
     console.log(error);
   }
@@ -29,9 +29,19 @@ app.post("/counter", async (req, res) => {
   try {
     const { newValue } = req.body;
     const newCounter = await Counter.create({ value: newValue });
-    res.json({ success: true, value: newCounter.value });
+    res.json(newCounter.value);
   } catch (error) {
     console.log(error);
+  }
+});
+
+app.delete("/counter", async (req, res) => {
+  try {
+    const result = await Counter.destroy({ where: {} });
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed,," });
   }
 });
 
